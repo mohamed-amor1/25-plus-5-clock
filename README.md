@@ -33,7 +33,7 @@ The **25 + 5 Clock** is a web-based productivity tool inspired by the Pomodoro T
 
 ## Getting Started
 
-I deployed this project on Netlify: [Project Link](https://netlify.user.x)
+I deployed this project on Netlify: [Project Link](https://25-plus-5-clock-ts.netlify.app/)
 
 To use the **25 + 5 Clock**, follow these steps:
 
