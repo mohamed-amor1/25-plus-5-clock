@@ -122,7 +122,30 @@ function PomodoroApp() {
                 size="large"
                 icon={<DownOutlined />}
               ></Button>
-              <Title id="session-length" style={{ fontWeight: "100" }}>
+              <Title
+                id="session-length"
+                style={{ fontWeight: "100" }}
+                editable={{
+                  onChange: (value: string) => {
+                    const parsedValue = parseInt(value, 10); // Parse the string value to an integer
+                    if (
+                      !isNaN(parsedValue) &&
+                      parsedValue < 60 &&
+                      parsedValue > 0
+                    ) {
+                      setSessionLength(parsedValue);
+                      if (isSession) {
+                        setMinutes(parsedValue);
+                      }
+                    }
+                  },
+
+                  onCancel: () => {
+                    setSessionLength(25);
+                    setMinutes(25);
+                  },
+                }}
+              >
                 {sessionLength}
               </Title>
               <Button
@@ -146,9 +169,33 @@ function PomodoroApp() {
                 icon={<DownOutlined />}
                 onClick={handleBreakDecrement}
               ></Button>
-              <Title id="break-length" style={{ fontWeight: "100" }}>
+              <Title
+                id="break-length"
+                style={{ fontWeight: "100" }}
+                editable={{
+                  onChange: (value: string) => {
+                    const parsedValue = parseInt(value, 10); // Parse the string value to an integer
+                    if (
+                      !isNaN(parsedValue) &&
+                      parsedValue < 60 &&
+                      parsedValue > 0
+                    ) {
+                      setBreakLength(parsedValue);
+                      if (!isSession) {
+                        setMinutes(parsedValue);
+                      }
+                    }
+                  },
+                  autoSize: true,
+                  onCancel: () => {
+                    setBreakLength(5);
+                    setMinutes(5);
+                  },
+                }}
+              >
                 {breakLength}
               </Title>
+
               <Button
                 id="break-increment"
                 onClick={handleBreakIncrement}
